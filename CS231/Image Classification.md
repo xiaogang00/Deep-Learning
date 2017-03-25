@@ -31,5 +31,20 @@ Nearest Neighbor Classifier
 
 ​			
 ​			
-​		
-​	
+
+##### Validation sets for hyperparameter tuning 
+
+有些情况下，我们只是知道一个大致的需要做的方向，但是如何选择合适的算法和参数都是不确定。例如在选的时候，如何选择距离的度量也是我们需要解决的问题。
+
+可以使用test set 来进行参数的调优
+
+可以从中选取一个验证集来进行validation set
+
+交叉验证：不停更换数据集和验证集，以达到tuning的效果
+
+其中KNN的计算复杂度比较高，所以可以使用其变形：
+
+ANN(Approximate Nearest Neighbor)
+
+
+
