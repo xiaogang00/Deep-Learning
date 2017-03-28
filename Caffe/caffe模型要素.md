@@ -20,3 +20,46 @@
   $$
 
 * Caffe Layer是Caffe模型的本质内容和执行计算的基本单元。可以进行多种运算，如convolve,pool,innerproduct等
+
+  * Data Layer:位于网络的最底层，数据可以从高效率的数据库中读取，也可以直接从内存中读取。
+
+    * 数据库，层类型：Data，参数:source  batch_size  rank_skip  backend
+    * 内存数据，层类型：MemoryData，参数：batch_size, channels, height, width
+    * HDF5数据，层类型：HDF5Data，参数：source，batch_size
+    * 图像数据 Images
+    * 窗口 Windows
+    * Dummy
+
+  * Convolution Layers
+
+  * Pooling Layers
+
+  * InnerProduct Layers  全连接层
+
+  * ReLu Layers 
+
+  * Sigmoid Layers
+
+  * LRN Layers  局部响应值归一化
+
+  * Dropout Layers
+
+  * SoftmaxWithLoss Layers  在这里满足：
+    $$
+    softmax_loss = softmax + loss\quad regression
+    $$
+
+  * Softmax Layers
+
+  * Accuracy Layers
+
+* Solver 方法
+
+  * SGD
+  * AdaDelta  鲁棒的学习率方法
+  * AdaGrad  自适应性梯度下降方法
+  * Adam   AdaGrad的一种泛化形式
+  * NAG  加速梯度下降
+  * RMSprop  基于梯度的优化方法
+
+  ​
