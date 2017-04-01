@@ -60,6 +60,5 @@
   * AdaGrad  自适应性梯度下降方法
   * Adam   AdaGrad的一种泛化形式
   * NAG  加速梯度下降
-  * RMSprop  基于梯度的优化方法
+  * RMSprop  基于梯度的优化方法​
 
-  ​
