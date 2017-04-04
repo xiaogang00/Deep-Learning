@@ -62,3 +62,5 @@ for step_size_log in [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1]:
     print 'for step size %f new loss: %f'  %(step_size, loss_new)
 ```
 
+step size 的选择在这里也是很重要的
+
