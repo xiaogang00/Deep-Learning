@@ -24,4 +24,23 @@ print 'top detection'
 print f.order(ascending = False)[:5]
 print ' '
 
+# Show top predictions for second-best detection.  
+f = pd.Series(df['prediction'].iloc[j], index=labels_df['name'])  
+print('Second-best detection:')  
+print(f.order(ascending=False)[:5])  
+
+# Show top detection in red, second-best top detection in blue.  
+im = plt.imread('examples/images/fish-bike.jpg')  
+plt.imshow(im)  
+currentAxis = plt.gca()  
+  
+det = df.iloc[i]  
+coords = (det['xmin'], det['ymin']), det['xmax'] - det['xmin'], det['ymax'] - det['ymin']  
+currentAxis.add_patch(plt.Rectangle(*coords, fill=False, edgecolor='r', linewidth=5))  
+  
+det = df.iloc[j]  
+coords = (det['xmin'], det['ymin']), det['xmax'] - det['xmin'], det['ymax'] - det['ymin']  
+currentAxis.add_patch(plt.Rectangle(*coords, fill=False, edgecolor='b', linewidth=5))  
+
+
 
