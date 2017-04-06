@@ -19,7 +19,7 @@ print df.iloc[0]
 i = predictions_df['person'].argmax()
 j = predictions_df['bicycle'].argmax()
 
-f = pd.Series(df['prediction'].iloc[i], index = labels_df['name'])
+f = pd.Series(df['prediction'].iloc[i], index = labels_df['name'])；、、
 print 'top detection'
 print f.order(ascending = False)[:5]
 print ' '
