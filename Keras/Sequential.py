@@ -58,8 +58,8 @@ labels = np.random.randint(2, size=(1000, 1))
 model.fit(data, labels, epochs=10, batch_size=32)
 #model.fit函数开始训练
 
+########################################################################
 # For a single-input model with 10 classes (categorical classification):
-
 model = Sequential()
 model.add(Dense(32, activation='relu', input_dim=100))
 model.add(Dense(10, activation='softmax'))
@@ -79,7 +79,7 @@ binary_labels = keras.utils.to_categorical(labels, num_classes=10)
 model.fit(data, binary_labels, epochs=10, batch_size=32)
 
 
-
+########################################################################
 #基于多层感知器的softmax多分类
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation
@@ -105,7 +105,7 @@ model.fit(x_train, y_train,
           epochs=20,
           batch_size=128)
 score = model.evaluate(x_test, y_test, batch_size=128)
-
+########################################################################
 
 #类似于VGG的卷积神经网络
 #在这里可以直接引入模块
@@ -113,11 +113,12 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras.optimizers import SGD
+
 #Keras具有自动推断在中间层的shape的性质
-rom keras.models import Sequential
-from keras.layers import Dense, Dropout, Flatten
-from keras.layers import Conv2D, MaxPooling2D
-from keras.optimizers import SGD
+#from keras.models import Sequential
+#from keras.layers import Dense, Dropout, Flatten
+#from keras.layers import Conv2D, MaxPooling2D
+#from keras.optimizers import SGD
 
 model = Sequential()
 # input: 100x100 images with 3 channels -> (100, 100, 3) tensors.
@@ -141,6 +142,56 @@ sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='categorical_crossentropy', optimizer=sgd)
 
 model.fit(x_train, y_train, batch_size=32, epochs=10)
+
+########################################################################
+
+#使用LSTM的序列分类
+from keras.models import Sequential
+from keras.layers import Dense, Dropout
+from keras.layers import Embedding
+from keras.layers import LSTM
+
+model = Sequential()
+model.add(Embedding(max_features, output_dim=256))
+model.add(LSTM(128))
+model.add(Dropout(0.5))
+model.add(Dense(1, activation='sigmoid'))
+
+model.compile(loss='binary_crossentropy',
+              optimizer='rmsprop',
+              metrics=['accuracy'])
+
+model.fit(x_train, y_train, batch_size=16, epochs=10)
+score = model.evaluate(x_test, y_test, batch_size=16)
+
+########################################################################
+
+#使用1D卷积的序列分类
+from keras.models import Sequential
+from keras.layers import Dense, Dropout
+from keras.layers import Embedding
+from keras.layers import Conv1D, GlobalAveragePooling1D, MaxPooling1D
+
+model = Sequential()
+model.add(Conv1D(64, 3, activation='relu', input_shape=(seq_length, 100)))
+model.add(Conv1D(64, 3, activation='relu'))
+model.add(MaxPooling1D(3))
+model.add(Conv1D(128, 3, activation='relu'))
+model.add(Conv1D(128, 3, activation='relu'))
+model.add(GlobalAveragePooling1D())
+model.add(Dropout(0.5))
+model.add(Dense(1, activation='sigmoid'))
+
+model.compile(loss='binary_crossentropy',
+              optimizer='rmsprop',
+              metrics=['accuracy'])
+
+model.fit(x_train, y_train, batch_size=16, epochs=10)
+score = model.evaluate(x_test, y_test, batch_size=16)
+
+
+
+
 
 
 
