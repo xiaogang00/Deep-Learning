@@ -8,7 +8,7 @@ model = Sequential([
     Dense(10),
     Activation('softmax'),
 ])
-
+# Dense(64) is a fully-connected layer with 64 hidden units.
 #另外一种方法
 model = Sequential()
 model.add(Dense(32, units=784))
